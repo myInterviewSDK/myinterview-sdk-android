@@ -1,0 +1,51 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.25.4'
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: rootProject.file('config/versions.gradle')
+apply from: rootProject.file('config/dependency.gradle')
+apply from: rootProject.file('config/signing.gradle')
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+android {
+    compileSdkVersion versions.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
+        applicationId "com.myinterview.sdk"
+        versionCode versions.versionCode
+        versionName versions.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debugSigning
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // implementation project(':library')
+
+    implementation dep.kotlin
+    implementation dep.appcompat
+    implementation(dep.crashlytics) { transitive = true }
+}

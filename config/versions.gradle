@@ -1,0 +1,9 @@
+// Versions
+project.ext.versions = [
+        versionCode        : 2,
+        versionName        : '0.9.1',
+        minSdkVersion      : 19,
+        targetSdkVersion   : 28,
+        compileSdkVersion  : 28,
+        buildToolsVersion  : '28.0.0'
+]
