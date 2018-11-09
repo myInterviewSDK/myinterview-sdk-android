@@ -8,7 +8,7 @@ object SampleConfigurationFactory {
 
     private const val API_KEY = "qDp2egprFa"
 
-    fun createSampleConfiguration(isShowQuestions: Boolean = false): Configuration = Configuration.build {
+    fun createSampleConfiguration(isShowQuestions: Boolean = false): Configuration = Configuration.Builder().build {
         preparationTimeSecs = 15
         showQuestions = isShowQuestions
         apiKey = API_KEY
