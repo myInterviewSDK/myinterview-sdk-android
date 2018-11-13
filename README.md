@@ -2,6 +2,7 @@
 
 # MyInterview Android SDK
 Integrate video into your recruitment solution and enhance the decision making process for employers.
+To obtain required credentials please visit [myInterview.com].
 
 ## Supported version
 The SDK supports all Android versions starting from API 19 (KitKat).
@@ -52,7 +53,7 @@ Configuration.build {
 }
 ```
 Configuration fields:
- - **apiKey** - API key to connect with MyInterview services
+ - **apiKey** - API key to connect with MyInterview services. To obtain **apiKey** please visit [myInterview.com].
  
  - **jobId** - if company has several open vacancies, this one could be vacancy id. *Optional field*.
  
@@ -242,3 +243,5 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+[myInterview.com] <https://myinterview.com>
