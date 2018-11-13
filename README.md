@@ -110,7 +110,7 @@ context.startActivityForResult(MyInterviewActivity.createIntent(this, sampleConf
 The app could handle the result of interview process.
 In `Activity` or `Fragment` app should override `onActivityResult(Int,Int,Intent)` method. Example:
 ```kotlin
-override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
     if (requestCode != myInterviewRequestCode) {
         return
     }
@@ -149,7 +149,7 @@ The example of using `MyInterviewView` in layout file:
 This is the minimum amount of code that is required to integrate `MyInterviewView` in Activity or Fragment.
 ```kotlin
 class UseViewSampleActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_use_view_sample)
         myinterview_view.run {
