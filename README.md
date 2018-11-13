@@ -1,12 +1,22 @@
+[ ![Download](https://api.bintray.com/packages/myintsdk/myinterview-sdk/myinterview-sdk-android/images/download.svg) ](https://bintray.com/myintsdk/myinterview-sdk/myinterview-sdk-android/_latestVersion) [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE) ![Platform](https://img.shields.io/badge/platform-Android-lightgrey.svg)
+
 # MyInterview Android SDK
 Integrate video into your recruitment solution and enhance the decision making process for employers.
 
-## Configuration
-There are two main classes that are responsible for configuration: [Configuration] and [Question].
-[Configuration] targets on configuration for the whole widget. [Question] contains required info about target question.
+## Installation
+Just put inside your application level build.gradle:
+```
+dependencies {
+  implementation 'com.myinterview:myinterview-sdk-android:0.9.0'
+}
+```
 
-### [Question]
-The example of creating instance [Question] class:
+## **Configuration**
+There are two main classes that are responsible for configuration: `Configuration` and `Question`.
+`Configuration` targets on configuration for the whole widget. `Question` contains required info about target question.
+
+### **Question**
+The example of creating instance `Question` class:
 ```
 Question.Builder().build {
     title = String
@@ -25,8 +35,8 @@ Fields:
 
 - **attempts** - number of attempts to record the answer
 
-### [Configuration]
-The example of creating instance of [Configuration] class:
+### **Configuration**
+The example of creating instance of `Configuration` class:
 ```
 Configuration.build {
     apiKey = String
@@ -78,10 +88,10 @@ Configuration.build {
 }
 ```
 ## Integration
-There are two options to integrate MyInterview Widget into the app: [MyInterviewActivity] and [MyInterviewView].
+There are two options to integrate MyInterview Widget into the app: `MyInterviewActivity` and `MyInterviewView`.
 
-### [MyInterviewActivity] integration
-The most easiest way start using MyInterview widget is to use [MyInterviewActivity].
+### **MyInterviewActivity** integration
+The most easiest way start using MyInterview widget is to use `MyInterviewActivity`.
 It could be started using `context.startActivity(Intent)` and `context.startActivityForResult(Intent, Int)`.
 ```
 val configuration = createMyInteviewWidgetConfiguration()
@@ -113,11 +123,11 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 }
 ```
 
-### [MyInterviewView] integration
-[MyInterviewView] integration option is more flexible but requires some additional coding.
+### **MyInterviewView** integration
+`MyInterviewView` integration option is more flexible but requires some additional coding.
 
 ##### Layout
-The example of using [MyInterviewView] in layout file:
+The example of using `MyInterviewView` in layout file:
 ```
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -133,7 +143,7 @@ The example of using [MyInterviewView] in layout file:
 </FrameLayout>
 ```
 ##### Activity or Fragment
-This is the minimum amount of code that is required to integrate [MyInterviewView] in Activity or Fragment.
+This is the minimum amount of code that is required to integrate `MyInterviewView` in Activity or Fragment.
 ```
 class UseViewSampleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -184,9 +194,9 @@ Important parts:
 
 - call `setContentView(Int)` is required because app works with View that is specified in layout xml
 
-- set `listener` to [MyInterviewView] - implementation of [Listener] interface. It's used for listening results of interview process.
+- set `listener` to `MyInterviewView` - implementation of `Listener` interface. It's used for listening results of interview process.
 
-- set `permissionCallback` to [MyInterview] - implementation of [RequestPermissionCallback] interface. It's used for requesting permissions.
+- set `permissionCallback` to `MyInterview` - implementation of `RequestPermissionCallback` interface. It's used for requesting permissions.
 
 - call `MyInterviewView#onStart()` and `MyInterviewView#onStop()` in appropriate lifecycle callbacks for correct lifecycle handling
 
@@ -194,13 +204,19 @@ Important parts:
 
 - **To start interview process** the app should invoke `MyInterviewView#startSurvey(Configuration)`
 
-## Sample 
-The samples are available in the [sample] module.
+## License
+```
+Copyright 2018 Myinterview Solutions Pty Ltd.
 
-[Configuration]: </myinterview-android-sdk/src/develop/library/src/main/java/com/myinterview/sdk/Configuration.kt>
-[Question]: </myinterview-android-sdk/src/develop/library/src/main/java/com/myinterview/sdk/Question.kt>
-[MyInterviewActivity]: </myinterview-android-sdk/src/develop/library/src/main/java/com/myinterview/sdk/MyInterviewActivity.kt>
-[MyInterviewView]: </myinterview-android-sdk/src/develop/library/src/main/java/com/myinterview/sdk/MyInterviewView.kt>
-[Listener]: </myinterview-android-sdk/src/develop/library/src/main/java/com/myinterview/sdk/Listener.kt>
-[RequestPermissionCallback]: </myinterview-android-sdk/src/develop/library/src/main/java/com/myinterview/sdk/RequestPermissionCallback.kt>
-[sample]: </myinterview-android-sdk/src/develop/sample/>
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
