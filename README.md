@@ -3,6 +3,9 @@
 # MyInterview Android SDK
 Integrate video into your recruitment solution and enhance the decision making process for employers.
 
+## Supported version
+The SDK supports all Android versions starting from API 19 (KitKat).
+
 ## Installation
 Just put inside your application level build.gradle:
 ```
@@ -203,6 +206,25 @@ Important parts:
 - call `MyInterviewView#onRequestPermissionResult(Int,Array<String>,IntArray)` inside `onRequestPermissionResult(Int,Array<String>,IntArray)` in target Activity or Fragment to handle request permission results
 
 - **To start interview process** the app should invoke `MyInterviewView#startSurvey(Configuration)`
+
+##### Activity or Fragment: handling results
+For handling results is using `Listener`:
+```kotlin
+myinterview_view.listener = object : Listener {
+   override fun onError(throwable: Throwable) {
+        // Place for error handling
+   }
+                 
+    override fun onCanceled() {
+        // Would be invoked in case when user canceled interview process
+    }
+                                 
+    override fun onCompleted() {
+        // Would be invoked in case when user 
+        // successfully finished interview process
+    }
+}
+```
 
 ## License
 ```
