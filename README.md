@@ -8,7 +8,7 @@ The SDK supports all Android versions starting from API 19 (KitKat).
 
 ## Installation
 Just put inside your application level build.gradle:
-```
+```groovy
 dependencies {
   implementation 'com.myinterview:myinterview-sdk-android:0.9.0'
 }
@@ -20,7 +20,7 @@ There are two main classes that are responsible for configuration: `Configuratio
 
 ### **Question**
 The example of creating instance `Question` class:
-```
+```kotlin
 Question.Builder().build {
     title = String
     text = String
@@ -40,7 +40,7 @@ Fields:
 
 ### **Configuration**
 The example of creating instance of `Configuration` class:
-```
+```kotlin
 Configuration.build {
     apiKey = String
     jobId = String
@@ -68,7 +68,7 @@ Configuration fields:
 
 ### Example
 The full example of creating configuration for MyInterview widget:
-```
+```kotlin
 Configuration.build {
     preparationTimeSecs = 15
     showQuestions = true /* switch to Interview mode */
@@ -96,12 +96,12 @@ There are two options to integrate MyInterview Widget into the app: `MyInterview
 ### **MyInterviewActivity** integration
 The most easiest way start using MyInterview widget is to use `MyInterviewActivity`.
 It could be started using `context.startActivity(Intent)` and `context.startActivityForResult(Intent, Int)`.
-```
+```kotlin
 val configuration = createMyInteviewWidgetConfiguration()
 context.startActivity(MyInterviewActivity.createIntent(this, sampleConfiguration), MY_INTERVIEW_REQUEST_CODE)
 ```
 or 
-```
+```kotlin
 val configuration = createMyInteviewWidgetConfiguration()
 context.startActivityForResult(MyInterviewActivity.createIntent(this, sampleConfiguration), MY_INTERVIEW_REQUEST_CODE)
 ```
@@ -109,7 +109,7 @@ context.startActivityForResult(MyInterviewActivity.createIntent(this, sampleConf
 ##### Handling activity result
 The app could handle the result of interview process.
 In `Activity` or `Fragment` app should override `onActivityResult(Int,Int,Intent)` method. Example:
-```
+```kotlin
 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     if (requestCode != myInterviewRequestCode) {
         return
@@ -131,7 +131,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 
 ##### Layout
 The example of using `MyInterviewView` in layout file:
-```
+```xml
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -147,7 +147,7 @@ The example of using `MyInterviewView` in layout file:
 ```
 ##### Activity or Fragment
 This is the minimum amount of code that is required to integrate `MyInterviewView` in Activity or Fragment.
-```
+```kotlin
 class UseViewSampleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
