@@ -2,8 +2,8 @@ package com.myinterview.sdk.sample
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.myinterview.sdk.MyInterviewActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -48,7 +48,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createMyInterviewActivityIntent(isShowQuestions: Boolean): Intent {
-        val sampleConfiguration = SampleConfigurationFactory.createSampleConfiguration(isShowQuestions)
+        val sampleConfiguration = SampleConfigurationFactory.createSampleConfiguration(
+            this,
+            isShowQuestions
+        )
         return MyInterviewActivity.createIntent(this, sampleConfiguration)
     }
 }

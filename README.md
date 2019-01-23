@@ -11,13 +11,17 @@ The SDK supports all Android versions starting from API 19 (KitKat).
 Just put inside your application level build.gradle:
 ```groovy
 dependencies {
-  implementation 'com.myinterview:myinterview-sdk-android:0.9.0'
+  implementation 'com.myinterview:myinterview-sdk-android:1.0.0'
 }
 ```
 
 ## **Configuration**
-There are two main classes that are responsible for configuration: `Configuration` and `Question`.
-`Configuration` targets on configuration for the whole widget. `Question` contains required info about target question.
+There are main classes that are responsible for configuration: `Configuration`, `FlowConfiguration`, `PracticeFlowConfiguration` and `Question`.
+`Configuration` keeps flow configurations. It can contain two fields: 
+ - `normalFlowConfiguration` is instance of `FlowConfiguration` class with configuration for widget.
+ - `practiceFlowConfiguration` is instance of `PracticeFlowConfiguration` class that contains list of questions for practice. *Optional field*.
+
+`Question` contains required info about target question.
 
 ### **Question**
 The example of creating instance `Question` class:
@@ -39,10 +43,10 @@ Fields:
 
 - **attempts** - number of attempts to record the answer
 
-### **Configuration**
-The example of creating instance of `Configuration` class:
+### **Flow Configuration**
+The example of creating instance of `FlowConfiguration` class:
 ```kotlin
-Configuration.build {
+FlowConfiguration.build {
     apiKey = String
     jobId = String
     username = String
@@ -67,30 +71,51 @@ Configuration fields:
  
  - **showQuestions** - switch between interview and normal mode. In interview mode user has _preparationTimeSec_ to prepare for answering before recording will start. In normal mode this parameter _preparationTimeSec_ is ignored.
 
+#### Practice Configuration
+The `PracticeFlowConfiguration` requires only one parameter - list of `Question`. The list of `Question` will be used to display during user practicing.
+
 ### Example
 The full example of creating configuration for MyInterview widget:
 ```kotlin
-Configuration.build {
-    preparationTimeSecs = 15
-    showQuestions = true /* switch to Interview mode */
-    apiKey = API_KEY
-    questions = Arrays.asList(Question.Builder().build {
-        title = "Introduce yourself"
-        text = "Example: Hello my name is [Your Name] and have been a [Profession] for [Number of] years.\n" +
-            "One more line.\n" +
-            "And this one too."
-        durationSecs = 61
-        attempts = 10
-    },
-    Question.Builder().build {
-        title = "What is your experience?"
-        text = "Give some examples of your work/ study/ life experiences " +
-            "(During my time at... I was able to... meaning I can now... for you)."
-        durationSecs = 60
-        attempts = 10
-    })
-}
+Configuration.build(context) {
+        normalFlowConfiguration = FlowConfiguration.build {
+            preparationTimeSecs = 15
+            showQuestions = isShowQuestions
+            apiKey = API_KEY
+            questions = Arrays.asList(
+                Question.Builder().build {
+                    title = "Introduce yourself"
+                    text = "Example: Hello my name is [Your Name] and " +
+                            "have been a [Profession] for [Number of] years.\n" +
+                            "One more line.\n" +
+                            "And this one too."
+                    tips = "The introduction is your opportunity to make a good first impression."
+                    durationSecs = 61
+                    attempts = 10
+                },
+                Question.Builder().build {
+                    title = "What is your experience?"
+                    text = "Give some examples of your work/ study/ life experiences " +
+                            "(During my time at... I was able to... meaning I can now... for you)."
+                    durationSecs = 60
+                    attempts = 2
+                }
+            )
+        }
+        practiceFlowConfiguration = PracticeFlowConfiguration(
+            questions = Arrays.asList(
+                Question.Builder().build {
+                    title = "What is your experience? (Practice)"
+                    text = "Give some examples of your work/ study/ life experiences " +
+                            "(During my time at... I was able to... meaning I can now... for you)."
+                    durationSecs = 60
+                    attempts = 2
+                }
+            )
+        )
+    }
 ```
+
 ## Integration
 There are two options to integrate MyInterview Widget into the app: `MyInterviewActivity` and `MyInterviewView`.
 

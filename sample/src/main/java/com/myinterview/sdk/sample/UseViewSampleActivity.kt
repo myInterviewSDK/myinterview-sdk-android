@@ -3,9 +3,9 @@ package com.myinterview.sdk.sample
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.myinterview.sdk.Listener
 import com.myinterview.sdk.RequestPermissionCallback
 import kotlinx.android.synthetic.main.activity_use_view_sample.*
@@ -40,7 +40,10 @@ class UseViewSampleActivity : AppCompatActivity() {
         }
         if (savedInstanceState == null) {
             val showQuestions = intent?.getBooleanExtra(EXTRA_SHOW_QUESTIONS_KEY, false)!!
-            myinterview_view.startSurvey(SampleConfigurationFactory.createSampleConfiguration(showQuestions))
+            myinterview_view.startSurvey(SampleConfigurationFactory.createSampleConfiguration(
+                this,
+                showQuestions
+            ))
         }
     }
 
@@ -63,8 +66,8 @@ class UseViewSampleActivity : AppCompatActivity() {
         private const val EXTRA_SHOW_QUESTIONS_KEY = "EXTRA_SHOW_QUESTIONS_KEY"
 
         fun createIntent(context: Context, showQuestions: Boolean) =
-                Intent(context, UseViewSampleActivity::class.java).apply {
-                    putExtra(EXTRA_SHOW_QUESTIONS_KEY, showQuestions)
-                }
+            Intent(context, UseViewSampleActivity::class.java).apply {
+                putExtra(EXTRA_SHOW_QUESTIONS_KEY, showQuestions)
+            }
     }
 }
