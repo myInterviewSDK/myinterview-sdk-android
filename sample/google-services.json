@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "238014174774",
+    "firebase_url": "https://myinterview-f8bca.firebaseio.com",
+    "project_id": "myinterview-f8bca",
+    "storage_bucket": "myinterview-f8bca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238014174774:android:9f3083eacec14d984aea97",
+        "android_client_info": {
+          "package_name": "com.myinterview.sdk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "238014174774-p9kqg1kh0vu0a63nudat794vr82ns2t8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzv_LcR6GT-y_MgWYYNh7nbXsW3CwRYKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "238014174774-p9kqg1kh0vu0a63nudat794vr82ns2t8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
